@@ -61,7 +61,7 @@ class PageController extends Controller
                     'tags' => ['NextJS', 'React', 'PostgreSQL'],
                 ],
                 [
-                    'title' => 'Healthcare Dashboard',
+                    'title' => 'Healthcare Management System',
                     'description' => 'Real-time patient monitoring system with analytics and reporting.',
                     'image' => '/images/healthcare-dashboard.png',
                     'tags' => ['Laravel', 'Livewire', 'PostgreSQL'],
