@@ -11,7 +11,7 @@ class PageController extends Controller
         return view('pages.home', [
             'company' => [
                 'name' => 'Au2m8',
-                'tagline' => 'Building the web, streamlining the process, and delivering excellence.',
+                'tagline' => 'Building the web, streamlining the process.',
                 'description' => 'We craft modern, performant web applications using the latest technologies.',
             ],
             'services' => [
