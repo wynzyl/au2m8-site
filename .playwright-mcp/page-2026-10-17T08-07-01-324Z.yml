@@ -1,0 +1,38 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e4]:
+      - link "Au2ma8" [ref=e5] [cursor=pointer]:
+        - /url: http://au2ma8-site.test
+      - generic [ref=e6]:
+        - link "Home" [ref=e7] [cursor=pointer]:
+          - /url: http://au2ma8-site.test
+        - link "About" [ref=e8] [cursor=pointer]:
+          - /url: http://au2ma8-site.test/about
+        - link "Projects" [ref=e9] [cursor=pointer]:
+          - /url: http://au2ma8-site.test/projects
+        - link "Contact Us" [ref=e10] [cursor=pointer]:
+          - /url: http://au2ma8-site.test/contact
+  - main [ref=e11]:
+    - generic [ref=e12]:
+      - generic [ref=e13]:
+        - heading "Our Projects" [level=1] [ref=e14]
+        - paragraph [ref=e15]: A selection of work we're proud of.
+      - generic [ref=e16]:
+        - generic [ref=e17]:
+          - img "School Management System" [ref=e19]
+          - heading "School Management System" [level=3] [ref=e20]
+          - paragraph [ref=e21]: Complete student information system with enrollment, grades, billing, and reporting.
+          - generic [ref=e22]:
+            - generic [ref=e23]: NextJS
+            - generic [ref=e24]: React
+            - generic [ref=e25]: PostgreSQL
+        - generic [ref=e26]:
+          - img "Healthcare Dashboard" [ref=e28]
+          - heading "Healthcare Dashboard" [level=3] [ref=e29]
+          - paragraph [ref=e30]: Real-time patient monitoring system with analytics and reporting.
+          - generic [ref=e31]:
+            - generic [ref=e32]: Laravel
+            - generic [ref=e33]: Livewire
+            - generic [ref=e34]: PostgreSQL
+  - contentinfo [ref=e35]:
+    - paragraph [ref=e37]: © 2026 Au2ma8. All rights reserved.

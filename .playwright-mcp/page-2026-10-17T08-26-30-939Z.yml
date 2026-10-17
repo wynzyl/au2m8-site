@@ -1,0 +1,35 @@
+- generic [active] [ref=f17e1]:
+  - navigation [ref=f17e2]:
+    - generic [ref=f17e4]:
+      - link "Au2ma8" [ref=f17e5] [cursor=pointer]:
+        - /url: http://au2ma8-site.test
+      - generic [ref=f17e6]:
+        - link "Home" [ref=f17e7] [cursor=pointer]:
+          - /url: http://au2ma8-site.test
+        - link "About" [ref=f17e8] [cursor=pointer]:
+          - /url: http://au2ma8-site.test/about
+        - link "Projects" [ref=f17e9] [cursor=pointer]:
+          - /url: http://au2ma8-site.test/projects
+        - link "Contact Us" [ref=f17e10] [cursor=pointer]:
+          - /url: http://au2ma8-site.test/contact
+  - main [ref=f17e11]:
+    - generic [ref=f17e12]:
+      - generic [ref=f17e13]:
+        - heading "Building the web, streamlining the process, and delivering excellence." [level=1] [ref=f17e14]
+        - paragraph [ref=f17e15]: We craft modern, performant web applications using the latest technologies.
+      - generic [ref=f17e16]:
+        - heading "Our Services" [level=2] [ref=f17e17]
+        - generic [ref=f17e18]:
+          - generic [ref=f17e19]:
+            - heading "Web Development" [level=3] [ref=f17e20]
+            - paragraph [ref=f17e21]: Custom web applications built with Laravel and modern frameworks
+          - generic [ref=f17e22]:
+            - heading "UI/UX Design" [level=3] [ref=f17e23]
+            - paragraph [ref=f17e24]: Beautiful, intuitive interfaces that users love
+          - generic [ref=f17e25]:
+            - heading "API Development" [level=3] [ref=f17e26]
+            - paragraph [ref=f17e27]: Robust, scalable APIs for your applications
+  - contentinfo [ref=f17e28]:
+    - generic [ref=f17e30]:
+      - generic [ref=f17e31]: Au2ma8
+      - paragraph [ref=f17e32]: © 2026 Au2ma8. All rights reserved.

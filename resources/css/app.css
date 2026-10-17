@@ -1,0 +1,49 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+
+    /* incident.io inspired color palette */
+    --color-primary: #F97316;
+    --color-primary-hover: #EA580C;
+    --color-dark: #111827;
+    --color-dark-secondary: #1F2937;
+    --color-text: #111827;
+    --color-text-secondary: #6B7280;
+    --color-border: #E5E7EB;
+    --color-background: #FFFFFF;
+}
+
+/* Custom utility classes */
+.btn-primary {
+    @apply inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white rounded-lg transition-colors;
+    background-color: var(--color-primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.btn-secondary {
+    @apply inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium rounded-lg border transition-colors;
+    color: var(--color-text);
+    border-color: var(--color-border);
+    background-color: var(--color-background);
+}
+
+.btn-secondary:hover {
+    background-color: #F9FAFB;
+}
+
+/* Accent color for links and highlights */
+.text-accent {
+    color: var(--color-primary);
+}
+
+.text-accent:hover {
+    color: var(--color-primary-hover);
+}
