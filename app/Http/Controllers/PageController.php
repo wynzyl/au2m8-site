@@ -9,11 +9,6 @@ class PageController extends Controller
     public function home(): View
     {
         return view('pages.home', [
-            'company' => [
-                'name' => 'Au2m8',
-                'tagline' => 'Building the web, streamlining the process.',
-                'description' => 'We craft modern, performant web applications using the latest technologies.',
-            ],
             'services' => [
                 ['name' => 'Web Development', 'description' => 'Custom web applications built with Laravel and modern frameworks'],
                 ['name' => 'UI/UX Design', 'description' => 'Beautiful, intuitive interfaces that users love'],
@@ -25,11 +20,6 @@ class PageController extends Controller
     public function about(): View
     {
         return view('pages.about', [
-            'company' => [
-                'name' => 'Au2m8',
-                'founded' => 2010,
-                'mission' => 'To deliver exceptional web solutions that help businesses thrive in the digital age.',
-            ],
             'team' => [
                 ['name' => 'Wenzel', 'role' => 'Lead Developer'],
                 ['name' => 'Pat', 'role' => 'UI/UX Designer'],
@@ -40,14 +30,7 @@ class PageController extends Controller
 
     public function contact(): View
     {
-        return view('pages.contact', [
-            'company' => [
-                'name' => 'Au2m8',
-                'email' => 'wenzel@au2m8.com',
-                'phone' => '+63 (919) 095-9251',
-                'address' => 'Poblacion, Urdaneta City, Pangasinan, 2428 Philippines',
-            ],
-        ]);
+        return view('pages.contact');
     }
 
     public function projects(): View
