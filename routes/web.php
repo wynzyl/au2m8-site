@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\CompanyProfileController;
+use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\PageController;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class, 'home'])->name('home');
@@ -21,5 +23,14 @@ Route::middleware('auth')->group(function (): void {
     Route::prefix('admin')->name('admin.')->group(function (): void {
         Route::get('/company', [CompanyProfileController::class, 'edit'])->name('company.edit');
         Route::put('/company', [CompanyProfileController::class, 'update'])->name('company.update');
+
+        $projectMissing = fn (): RedirectResponse => redirect()
+            ->route('admin.projects.index')
+            ->with('status', 'That project no longer exists.');
+
+        Route::resource('projects', ProjectController::class)->except('show')->missing($projectMissing);
+        Route::get('/projects/{project}/delete', [ProjectController::class, 'delete'])
+            ->name('projects.delete')
+            ->missing($projectMissing);
     });
 });

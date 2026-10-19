@@ -2,6 +2,7 @@
 
 use App\Models\CompanyProfile;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 test('public page has a collapsible mobile menu with every link', function (string $routeName) {
@@ -43,13 +44,19 @@ test('contact page omits contact links when the profile record is missing', func
 });
 
 test('project images are sized and lazy loaded below the fold', function () {
+    Storage::fake('public');
+    Storage::disk('public')->put('projects/merryland.webp', 'x');
+    Storage::disk('public')->put('projects/healthcare-dashboard.webp', 'x');
+
     preg_match_all('/<img[^>]*>/', $this->get(route('projects'))->getContent(), $matches);
     $images = $matches[0];
+    $titles = ['School Management System', 'Healthcare Management System'];
 
-    expect($images)->not->toBeEmpty();
+    expect($images)->toHaveCount(2);
 
     foreach ($images as $index => $image) {
-        expect($image)->toContain('decoding="async"')
+        expect($image)->toContain('alt="'.$titles[$index].'"')
+            ->toContain('decoding="async"')
             ->toContain('width="816"')
             ->toContain('height="544"');
 
