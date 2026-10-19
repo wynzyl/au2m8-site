@@ -10,6 +10,9 @@
     /* incident.io inspired color palette */
     --color-primary: #F97316;
     --color-primary-hover: #EA580C;
+    /* Text-safe primary shades: at least 4.5:1 against white */
+    --color-primary-strong: #C2410C;
+    --color-primary-strong-hover: #9A3412;
     --color-dark: #111827;
     --color-dark-secondary: #1F2937;
     --color-text: #111827;
@@ -21,11 +24,11 @@
 /* Custom utility classes */
 .btn-primary {
     @apply inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white rounded-lg transition-colors;
-    background-color: var(--color-primary);
+    background-color: var(--color-primary-strong);
 }
 
 .btn-primary:hover {
-    background-color: var(--color-primary-hover);
+    background-color: var(--color-primary-strong-hover);
 }
 
 .btn-secondary {
@@ -41,9 +44,9 @@
 
 /* Accent color for links and highlights */
 .text-accent {
-    color: var(--color-primary);
+    color: var(--color-primary-strong);
 }
 
 .text-accent:hover {
-    color: var(--color-primary-hover);
+    color: var(--color-primary-strong-hover);
 }
