@@ -9,13 +9,10 @@
 @section('content')
 <div class="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
     <div class="sm:max-w-2xl">
-        <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-8">
-            <h1 class="text-3xl font-semibold tracking-tight">Company details</h1>
+        <x-admin.nav />
 
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button type="submit" class="btn-secondary w-full sm:w-auto min-h-11">Sign out</button>
-            </form>
+        <div class="mb-8">
+            <h1 class="text-3xl font-semibold tracking-tight">Company details</h1>
         </div>
 
         @if (session('status'))

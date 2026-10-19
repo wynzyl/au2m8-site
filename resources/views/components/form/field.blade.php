@@ -4,12 +4,15 @@
     'value' => null,
     'type' => 'text',
     'multiline' => false,
+    'hint' => null,
 ])
 
 @php
     $inputId = 'field-'.$name;
     $errorId = $inputId.'-error';
+    $hintId = $inputId.'-hint';
     $hasError = $errors->has($name);
+    $describedBy = trim(($hint !== null ? $hintId : '').' '.($hasError ? $errorId : ''));
     $fieldClasses = 'block w-full min-h-11 rounded-lg border bg-white px-3 py-2 text-base text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-700 focus:border-orange-700 '
         .($hasError ? 'border-red-700' : 'border-gray-300');
 @endphp
@@ -22,7 +25,8 @@
             id="{{ $inputId }}"
             name="{{ $name }}"
             rows="3"
-            @if ($hasError) aria-invalid="true" aria-describedby="{{ $errorId }}" @endif
+            @if ($hasError) aria-invalid="true" @endif
+            @if ($describedBy !== '') aria-describedby="{{ $describedBy }}" @endif
             {{ $attributes->merge(['class' => $fieldClasses]) }}
         >{{ old($name, $value) }}</textarea>
     @else
@@ -31,9 +35,14 @@
             name="{{ $name }}"
             type="{{ $type }}"
             value="{{ old($name, $value) }}"
-            @if ($hasError) aria-invalid="true" aria-describedby="{{ $errorId }}" @endif
+            @if ($hasError) aria-invalid="true" @endif
+            @if ($describedBy !== '') aria-describedby="{{ $describedBy }}" @endif
             {{ $attributes->merge(['class' => $fieldClasses]) }}
         >
+    @endif
+
+    @if ($hint !== null)
+        <p id="{{ $hintId }}" class="mt-1 text-sm text-gray-600">{{ $hint }}</p>
     @endif
 
     @error($name)

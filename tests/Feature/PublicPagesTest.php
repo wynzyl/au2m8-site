@@ -1,7 +1,9 @@
 <?php
 
 use App\Models\CompanyProfile;
+use App\Models\Project;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 test('public page shows the company name in the title, header and footer', function (string $routeName) {
     $response = $this->get(route($routeName));
@@ -34,6 +36,73 @@ test('projects page title uses the company name', function () {
     $this->get(route('projects'))
         ->assertOk()
         ->assertSee('<title>Projects - Au2m8</title>', false);
+});
+
+/**
+ * Put both seeded project images on the fake public disk.
+ */
+function fakeSeededProjectImages(): void
+{
+    Storage::fake('public');
+    Storage::disk('public')->put('projects/merryland.webp', 'x');
+    Storage::disk('public')->put('projects/healthcare-dashboard.webp', 'x');
+}
+
+test('projects page shows the stored projects in order with their images and tags', function () {
+    fakeSeededProjectImages();
+
+    $response = $this->get(route('projects'))
+        ->assertOk()
+        ->assertSeeInOrder(['School Management System', 'Healthcare Management System'])
+        ->assertSee('Complete student information system with enrollment, grades, billing, and reporting.')
+        ->assertSee('Real-time patient monitoring system with analytics and reporting.');
+
+    foreach (['NextJS', 'React', 'PostgreSQL', 'Laravel', 'Livewire'] as $tag) {
+        $response->assertSee($tag);
+    }
+
+    expect($response->getContent())
+        ->toMatch('/<img[^>]*src="[^"]*\/storage\/projects\/merryland\.webp"/')
+        ->toMatch('/<img[^>]*src="[^"]*\/storage\/projects\/healthcare-dashboard\.webp"/');
+});
+
+test('projects page leaves out hidden projects', function () {
+    fakeSeededProjectImages();
+    Project::factory()->unpublished()->create(['title' => 'Secret Build']);
+
+    $this->get(route('projects'))
+        ->assertOk()
+        ->assertDontSee('Secret Build');
+});
+
+test('projects page shows a message when nothing is published', function () {
+    fakeSeededProjectImages();
+    Project::query()->update(['is_published' => false]);
+
+    $this->get(route('projects'))
+        ->assertOk()
+        ->assertSee('Our Projects')
+        ->assertSee('New projects will be added soon.')
+        ->assertDontSee('<img', false);
+});
+
+test('project titles are escaped', function () {
+    fakeSeededProjectImages();
+    Project::factory()->create(['title' => 'R&D <Lab>']);
+
+    $this->get(route('projects'))
+        ->assertOk()
+        ->assertSee('R&amp;D &lt;Lab&gt;', false);
+});
+
+test('a project with a missing image shows a placeholder', function () {
+    fakeSeededProjectImages();
+    Storage::disk('public')->delete('projects/healthcare-dashboard.webp');
+
+    $content = $this->get(route('projects'))->assertOk()->getContent();
+
+    expect(substr_count($content, '<img'))->toBe(1)
+        ->and($content)->toContain('data-image-placeholder');
 });
 
 test('contact page shows the email, phone and address', function () {

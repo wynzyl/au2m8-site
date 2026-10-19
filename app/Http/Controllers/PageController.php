@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use Illuminate\View\View;
 
 class PageController extends Controller
@@ -36,20 +37,7 @@ class PageController extends Controller
     public function projects(): View
     {
         return view('pages.projects', [
-            'projects' => [
-                [
-                    'title' => 'School Management System',
-                    'description' => 'Complete student information system with enrollment, grades, billing, and reporting.',
-                    'image' => '/images/Merryland.png',
-                    'tags' => ['NextJS', 'React', 'PostgreSQL'],
-                ],
-                [
-                    'title' => 'Healthcare Management System',
-                    'description' => 'Real-time patient monitoring system with analytics and reporting.',
-                    'image' => '/images/healthcare-dashboard.png',
-                    'tags' => ['Laravel', 'Livewire', 'PostgreSQL'],
-                ],
-            ],
+            'projects' => Project::query()->published()->ordered()->get(),
         ]);
     }
 }
